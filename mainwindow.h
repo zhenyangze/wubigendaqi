@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QDesktopWidget>
-#include <QApplication>
+//#include <QApplication>
 #include "wfileinfo.h"
 #include <QString>
 #include "wfileterform.h"

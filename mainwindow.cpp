@@ -50,6 +50,7 @@ void MainWindow::oldFile(){
 }
 
 void MainWindow::exit(){
-    QApplication *app;
-    app->closeAllWindows();
+//    QApplication *app;
+//    app->quit();
+    this->close();
 }

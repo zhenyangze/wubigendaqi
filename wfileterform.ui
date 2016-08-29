@@ -23,7 +23,7 @@
       <attribute name="title">
        <string>单字</string>
       </attribute>
-      <widget class="QListView" name="listView">
+      <widget class="QListWidget" name="listWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -43,7 +43,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -69,7 +69,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -91,7 +91,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -130,7 +130,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -148,11 +148,15 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_linenum"/>
+         <widget class="QLineEdit" name="lineEdit_linenum">
+          <property name="text">
+           <string>1</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>165</x>
@@ -174,7 +178,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -207,7 +211,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -233,7 +237,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>150</x>
