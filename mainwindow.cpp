@@ -34,6 +34,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::openFile(){
+      WFileterForm *filterForm = new WFileterForm;
+      filterForm->show();
 //    WFileInfo *fileInfo = new WFileInfo;
 //    fileInfo->openFile();
 //    QString filePath = fileInfo->getFilePath();

@@ -6,6 +6,7 @@
 #include <QApplication>
 #include "wfileinfo.h"
 #include <QString>
+#include "wfileterform.h"
 
 namespace Ui {
 class MainWindow;

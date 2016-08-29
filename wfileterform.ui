@@ -37,102 +37,223 @@
        <property name="geometry">
         <rect>
          <x>150</x>
-         <y>220</y>
+         <y>247</y>
          <width>241</width>
-         <height>78</height>
+         <height>51</height>
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>164</x>
-         <y>10</y>
-         <width>70</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>分割符：</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_2">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
          <x>150</x>
-         <y>40</y>
-         <width>71</width>
-         <height>17</height>
+         <y>157</y>
+         <width>143</width>
+         <height>30</height>
         </rect>
        </property>
-       <property name="text">
-        <string>显示行数：</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>开启限时：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox_dingshi">
+          <property name="text">
+           <string>开启</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QLabel" name="label_3">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
          <x>150</x>
          <y>70</y>
-         <width>81</width>
-         <height>17</height>
+         <width>229</width>
+         <height>29</height>
         </rect>
        </property>
-       <property name="text">
-        <string>每行字数：</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>每行字数：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_wordnum"/>
+        </item>
+       </layout>
       </widget>
-      <widget class="QLabel" name="label_4">
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>210</y>
+         <width>224</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>添加文件</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>开启发文</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>40</y>
+         <width>229</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>显示行数：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_linenum"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>165</x>
+         <y>10</y>
+         <width>214</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>分割符：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_fenge"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
          <x>150</x>
          <y>100</y>
-         <width>81</width>
-         <height>17</height>
+         <width>209</width>
+         <height>30</height>
         </rect>
        </property>
-       <property name="text">
-        <string>显示顺序：</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>显示顺序：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioButton_order_suiji">
+          <property name="text">
+           <string>随机</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioButton_order_shunxu">
+          <property name="text">
+           <string>顺序</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QLabel" name="label_5">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
          <x>150</x>
          <y>130</y>
-         <width>81</width>
-         <height>17</height>
+         <width>150</width>
+         <height>25</height>
         </rect>
        </property>
-       <property name="text">
-        <string>选择文件：</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>选择文件：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_select_file_name">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
          <x>150</x>
          <y>180</y>
-         <width>99</width>
-         <height>27</height>
+         <width>229</width>
+         <height>29</height>
         </rect>
        </property>
-       <property name="text">
-        <string>添加文件</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>180</y>
-         <width>99</width>
-         <height>27</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>开启发文</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>每字时间：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_time"/>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QWidget" name="tab_cizu">
