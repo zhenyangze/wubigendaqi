@@ -10,6 +10,12 @@
 //#include <QList>
 #include <QStringList>
 #include <QMessageBox>
+#include <QIntValidator>
+#include <QDoubleValidator>
+#include <QPixmap>
+#include <QDir>
+#include <QFileInfo>
+
 
 namespace Ui {
 class WFileterForm;
@@ -25,13 +31,11 @@ public:
     ~WFileterForm();
 
 private slots:
-    void on_pushButton_clicked();
+    void selectItemFIle(QListWidgetItem *item);
 
-    void on_listWidget_activated(const QModelIndex &index);
+    void on_pushButton_addFile_clicked();
 
-    void on_listWidget_itemActivated(QListWidgetItem *item);
-
-
+    void on_pushButton_send_clicked();
 
 private:
     Ui::WFileterForm *ui;

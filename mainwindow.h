@@ -3,10 +3,15 @@
 
 #include <QMainWindow>
 #include <QDesktopWidget>
-//#include <QApplication>
 #include "wfileinfo.h"
 #include <QString>
 #include "wfileterform.h"
+#include <QDir>
+#include <QPixmap>
+#include <QMenu>
+#include <QAction>
+//#include "wpipe.h"
+#include <QDebug>
 
 namespace Ui {
 class MainWindow;

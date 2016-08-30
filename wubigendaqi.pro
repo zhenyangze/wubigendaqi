@@ -15,11 +15,19 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     wfileinfo.cpp \
-    wfileterform.cpp
+    wfileterform.cpp \
+    wfilterdanzi.cpp
 
 HEADERS  += mainwindow.h \
     wfileinfo.h \
-    wfileterform.h
+    wfileterform.h \
+    wfilterdanzi.h
 
 FORMS    += mainwindow.ui \
     wfileterform.ui
+
+DISTFILES += \
+    img/file.png
+
+RESOURCES += \
+    source.qrc

@@ -43,7 +43,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget7">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -69,7 +69,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget4">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -87,11 +87,18 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_wordnum"/>
+         <widget class="QLineEdit" name="lineEdit_wordnum">
+          <property name="text">
+           <string>30</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget9">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -102,7 +109,7 @@
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_9">
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="pushButton_addFile">
           <property name="text">
            <string>添加文件</string>
           </property>
@@ -122,7 +129,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="pushButton_send">
           <property name="text">
            <string>开启发文</string>
           </property>
@@ -130,7 +137,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget3">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -152,11 +159,14 @@
           <property name="text">
            <string>1</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
          </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget2">
        <property name="geometry">
         <rect>
          <x>165</x>
@@ -174,11 +184,18 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_fenge"/>
+         <widget class="QLineEdit" name="lineEdit_fenge">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>为空则按字分隔</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget5">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -200,6 +217,9 @@
           <property name="text">
            <string>随机</string>
           </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
@@ -211,7 +231,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget6">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -231,13 +251,13 @@
         <item>
          <widget class="QLabel" name="label_select_file_name">
           <property name="text">
-           <string>TextLabel</string>
+           <string/>
           </property>
          </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget8">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -255,7 +275,33 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_time"/>
+         <widget class="QLineEdit" name="lineEdit_time">
+          <property name="maxLength">
+           <number>4</number>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_8">
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>秒</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
