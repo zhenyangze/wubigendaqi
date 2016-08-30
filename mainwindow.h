@@ -12,6 +12,7 @@
 #include <QAction>
 //#include "wpipe.h"
 #include <QDebug>
+#include "wfilepipi.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,7 @@ public slots:
     void openFile();
     void oldFile();
     void exit();
+    void test();
 
 private:
     Ui::MainWindow *ui;

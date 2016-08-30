@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-//#include "wpipe.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -34,14 +33,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QMenu *menu = new QMenu;
     QAction *actionOpen = new QAction("打开文件", menu);
     QAction *actionExit = new QAction("退出", menu);
+    QAction *actionTest = new QAction("测试", menu);
     menu->addAction(actionOpen);
     menu->addAction(actionExit);
+    menu->addAction(actionTest);
     ui->pushButton_file->setMenu(menu);
 
 
     //slot
     connect(actionOpen, SIGNAL(triggered(bool)), this, SLOT(openFile()));
     connect(actionExit, SIGNAL(triggered(bool)), this, SLOT(exit()));
+    connect(actionTest, SIGNAL(triggered(bool)), this, SLOT(test()));
 }
 
 MainWindow::~MainWindow()
@@ -52,7 +54,6 @@ MainWindow::~MainWindow()
 void MainWindow::openFile(){
       WFileterForm *filterForm = new WFileterForm;
       filterForm->show();
-      //qDebug() << WPipe::filePath;
 }
 
 void MainWindow::oldFile(){
@@ -61,4 +62,7 @@ void MainWindow::oldFile(){
 
 void MainWindow::exit(){
     this->close();
+}
+void MainWindow::test(){
+    qDebug() << WfilePipi::filePath;
 }

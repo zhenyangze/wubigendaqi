@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     wfileinfo.cpp \
     wfileterform.cpp \
-    wfilterdanzi.cpp
+    wfilterdanzi.cpp \
+    wfilepipi.cpp
 
 HEADERS  += mainwindow.h \
     wfileinfo.h \
     wfileterform.h \
-    wfilterdanzi.h
+    wfilterdanzi.h \
+    wfilepipi.h
 
 FORMS    += mainwindow.ui \
     wfileterform.ui

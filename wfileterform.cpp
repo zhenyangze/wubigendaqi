@@ -64,4 +64,5 @@ void WFileterForm::selectItemFIle(QListWidgetItem *item){
 void WFileterForm::on_pushButton_send_clicked()
 {
      //WPipe::filePath = ui->label_select_file_name->text();
+    WfilePipi::filePath = ui->label_select_file_name->text();
 }

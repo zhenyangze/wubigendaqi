@@ -15,6 +15,7 @@
 #include <QPixmap>
 #include <QDir>
 #include <QFileInfo>
+#include "wfilepipi.h"
 
 
 namespace Ui {
