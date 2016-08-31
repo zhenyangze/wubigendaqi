@@ -31,7 +31,7 @@ public:
     explicit WFileterForm(QWidget *parent = 0);
     ~WFileterForm();
 
-private slots:
+public slots:
     void selectItemFIle(QListWidgetItem *item);
 
     void on_pushButton_addFile_clicked();
@@ -40,6 +40,8 @@ private slots:
 
 private:
     Ui::WFileterForm *ui;
+signals:
+    void noticeMainStart();
 };
 
 #endif // WFILETERFORM_H

@@ -10,7 +10,7 @@ class WFilterDanzi
 {
 private:
     QStringList fileList;//文件列表
-    QString filePath = ""; //当前选择的文件
+    QString filePath = QString(""); //当前选择的文件
     QString fileContents = ""; //当前选择文件的内容
     QString inputFenge = ""; //分隔符号
     int inputWordNum = int(0); //每行字数

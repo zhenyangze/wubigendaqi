@@ -42,6 +42,9 @@
          <height>51</height>
         </rect>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QWidget" name="layoutWidget7">
        <property name="geometry">

@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //slot
     connect(actionOpen, SIGNAL(triggered(bool)), this, SLOT(openFile()));
     connect(actionExit, SIGNAL(triggered(bool)), this, SLOT(exit()));
-    connect(actionTest, SIGNAL(triggered(bool)), this, SLOT(test()));
+    connect(actionTest, SIGNAL(triggered(bool)), this, SLOT(yiedText()));
 }
 
 MainWindow::~MainWindow()
@@ -52,7 +52,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::openFile(){
-      WFileterForm *filterForm = new WFileterForm;
+      WFileterForm *filterForm = new WFileterForm();
+      connect(filterForm, SIGNAL(noticeMainStart()), this, SLOT(yiedText()));
       filterForm->show();
 }
 
@@ -65,4 +66,21 @@ void MainWindow::exit(){
 }
 void MainWindow::test(){
     qDebug() << WfilePipi::filePath;
+}
+
+void MainWindow::startSend(){
+    qDebug() << WfilePipi::contentList[0];
+}
+
+void MainWindow::yiedText(){
+    if (WfilePipi::index >= WfilePipi::contentList.length()) {
+        return;
+    }
+    QString showLine = WfilePipi::contentList.at(WfilePipi::index);
+    if (showLine.length() <= 0) {
+        return;
+    }
+
+    ui->textEdit_course->setText(showLine);
+    WfilePipi::index++;
 }

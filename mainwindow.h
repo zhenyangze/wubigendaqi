@@ -31,6 +31,8 @@ public slots:
     void oldFile();
     void exit();
     void test();
+    void startSend();
+    void yiedText();
 
 private:
     Ui::MainWindow *ui;

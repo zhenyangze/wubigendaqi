@@ -18,8 +18,13 @@ QString WFileInfo::getFilePath(){
     return this->filePath;
 }
 
-QString WFileInfo::getFileContents(){
-    QString fileName = this->filePath;
+QString WFileInfo::getFileContents(QString filePath){
+    QString fileName;
+    if (filePath.length() > 0){
+        fileName = filePath;
+    } else {
+        fileName = this->filePath;
+    }
     QTextCodec * code = QTextCodec::codecForName("utf8");
     QFile file(fileName);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))

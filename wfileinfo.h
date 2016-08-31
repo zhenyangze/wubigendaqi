@@ -20,7 +20,7 @@ public:
     void openFile();
     void setFilePath(QString filePath);
     QString getFilePath();
-    QString getFileContents();
+    QString getFileContents(QString filePath = "");
 
 signals:
 
