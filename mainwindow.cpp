@@ -29,21 +29,51 @@ MainWindow::MainWindow(QWidget *parent) :
     QPixmap fileImage(fileImagePath);
     ui->pushButton_file->setIcon(fileImage);
 
+    //状态栏
+
+    //QSpacerItem *spaceItem = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    label_wubi = new QLabel();
+    label_time = new QLabel();
+
+    label_wubi->setStyleSheet("QLabel{border:0;padding:0 5}");
+
+    label_wubi->setMinimumWidth(50);
+    label_time->setAlignment(Qt::AlignRight);
+
+    ui->statusBar->addWidget(label_wubi);
+   // ui->statusBar->(spaceItem);
+    ui->statusBar->addWidget(label_time);
+    ui->statusBar->setStyleSheet(QString("QStatusBar::item{border:0px}"));//去掉label的边框.
+
+
     //文件操作下拉
     QMenu *menu = new QMenu;
     QAction *actionOpen = new QAction("打开文件", menu);
     QAction *actionExit = new QAction("退出", menu);
     QAction *actionTest = new QAction("测试", menu);
+    QAction *actionRepeat = new QAction("重发", menu);
     menu->addAction(actionOpen);
     menu->addAction(actionExit);
     menu->addAction(actionTest);
+    menu->addAction(actionRepeat);
     ui->pushButton_file->setMenu(menu);
 
+    //字典
+    this->readDi();
 
     //slot
     connect(actionOpen, SIGNAL(triggered(bool)), this, SLOT(openFile()));
     connect(actionExit, SIGNAL(triggered(bool)), this, SLOT(exit()));
     connect(actionTest, SIGNAL(triggered(bool)), this, SLOT(yiedText()));
+    connect(actionRepeat, SIGNAL(triggered(bool)), this, SLOT(repeatSend()));
+    connect(ui->textEdit_course, SIGNAL(textChanged()), this, SLOT(showDi()));
+    connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(showDi()));
+
+    //timer
+    QTimer *timer = new QTimer(this);
+    connect(timer,SIGNAL(timeout()),this,SLOT(timeUpdate()));
+    //关联定时器计满信号和相应的槽函数
+    timer->start();
 }
 
 MainWindow::~MainWindow()
@@ -72,7 +102,14 @@ void MainWindow::startSend(){
     qDebug() << WfilePipi::contentList[0];
 }
 
+void MainWindow::repeatSend()
+{
+    WfilePipi::index = 0;
+    this->yiedText();
+}
+
 void MainWindow::yiedText(){
+
     if (WfilePipi::index >= WfilePipi::contentList.length()) {
         return;
     }
@@ -82,5 +119,54 @@ void MainWindow::yiedText(){
     }
 
     ui->textEdit_course->setText(showLine);
+    ui->plainTextEdit_input->setPlainText("");
     WfilePipi::index++;
 }
+
+void MainWindow::showDi(){
+    QString sourceText = ui->textEdit_course->document()->toPlainText();
+    QString userText = ui->plainTextEdit_input->document()->toPlainText();
+    if (sourceText.length() <= userText.length()){
+        return;
+    }
+    QString currentWord = sourceText.at(userText.length());
+    currentWord = currentWord.trimmed();
+    if (0 == currentWord.length()){
+        return;
+    }
+    QString wubi = this->diList[currentWord];
+    label_wubi->setText(" " + wubi + " ");
+
+}
+
+void MainWindow::readDi(QString filePath){
+    if (filePath.length() == 0){
+        filePath = ":/source/data/di.txt";
+    }
+    WFileInfo *fileInfo = new WFileInfo;
+    QString contents = fileInfo->getFileContents(filePath);
+    QStringList contentsList = contents.split("\n", QString::SkipEmptyParts);
+    for(int i = 0; i< contentsList.length(); i++){
+        QString currentLine = contentsList[i];
+        currentLine = currentLine.simplified();
+        currentLine = currentLine.trimmed();
+        if (0 == currentLine.length()){
+            continue;
+        }
+        QStringList currentLineList = currentLine.split(" ");
+        if (currentLineList.length() > 1){
+            for(int j = 1; j < currentLineList.length(); j++){
+                this->diList[currentLineList.at(j)] = currentLineList.at(0);
+            }
+        }
+    }
+    //qDebug() <<this->diList.count();
+}
+
+void MainWindow::timeUpdate(){
+    QDateTime time = QDateTime::currentDateTime();
+    //获取系统现在的时间
+    QString timeStr = time.toString("yyyy-MM-dd hh:mm:ss ddd"); //设置显示格式
+    label_time->setText(timeStr);
+}
+

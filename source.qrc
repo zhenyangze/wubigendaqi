@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/source">
         <file>img/file.png</file>
+        <file>data/di.txt</file>
     </qresource>
 </RCC>
