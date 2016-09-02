@@ -18,16 +18,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->setMaximumSize(this->size());
     this->setMinimumSize(this->size());
-    this->setWindowTitle(tr("五笔跟打练习"));
-    ui->horizontalLayout_2->setMargin(5);
+    this->setWindowTitle(tr("霹雳五笔跟打器"));
     ui->textEdit_course->setText("");
 
 
 
     //样式设置
-    QString fileImagePath = QString(":/source/img/file.png");
-    QPixmap fileImage(fileImagePath);
-    ui->pushButton_file->setIcon(fileImage);
+    //QString fileImagePath = QString(":/source/img/file.png");
+    //QPixmap fileImage(fileImagePath);
+    //ui->pushButton_file->setIcon(fileImage);
 
     //状态栏
 
@@ -37,14 +36,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     label_wubi->setStyleSheet("QLabel{border:0;padding:0 5}");
 
-    label_wubi->setMinimumWidth(50);
+    label_wubi->setMinimumWidth(70);
+    label_wubi->setAlignment(Qt::AlignCenter);
     label_time->setAlignment(Qt::AlignRight);
 
     ui->statusBar->addWidget(label_wubi);
    // ui->statusBar->(spaceItem);
     ui->statusBar->addWidget(label_time);
     ui->statusBar->setStyleSheet(QString("QStatusBar::item{border:0px}"));//去掉label的边框.
-
 
     //文件操作下拉
     QMenu *menu = new QMenu;
@@ -64,10 +63,11 @@ MainWindow::MainWindow(QWidget *parent) :
     //slot
     connect(actionOpen, SIGNAL(triggered(bool)), this, SLOT(openFile()));
     connect(actionExit, SIGNAL(triggered(bool)), this, SLOT(exit()));
-    connect(actionTest, SIGNAL(triggered(bool)), this, SLOT(yiedText()));
+    connect(actionTest, SIGNAL(triggered(bool)), this, SLOT(test()));
     connect(actionRepeat, SIGNAL(triggered(bool)), this, SLOT(repeatSend()));
     connect(ui->textEdit_course, SIGNAL(textChanged()), this, SLOT(showDi()));
     connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(showDi()));
+    connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(setLineColor()));
 
     //timer
     QTimer *timer = new QTimer(this);
@@ -96,6 +96,7 @@ void MainWindow::exit(){
 }
 void MainWindow::test(){
     qDebug() << WfilePipi::filePath;
+    this->setLineColor();
 }
 
 void MainWindow::startSend(){
@@ -120,6 +121,7 @@ void MainWindow::yiedText(){
 
     ui->textEdit_course->setText(showLine);
     ui->plainTextEdit_input->setPlainText("");
+
     WfilePipi::index++;
 }
 
@@ -135,7 +137,7 @@ void MainWindow::showDi(){
         return;
     }
     QString wubi = this->diList[currentWord];
-    label_wubi->setText(" " + wubi + " ");
+    label_wubi->setText(wubi);
 
 }
 
@@ -170,3 +172,31 @@ void MainWindow::timeUpdate(){
     label_time->setText(timeStr);
 }
 
+void MainWindow::setLineColor(){
+    int index = WfilePipi::index - 1;
+    if (index <= 0) {
+        index = 0;
+    }
+    QString showLine = WfilePipi::contentList.at(index);
+
+    QString userText = ui->plainTextEdit_input->document()->toPlainText();
+    if (showLine.length() == 0){
+        return;
+    }
+    //设置进度颜色
+    QString showColorContents = "";
+    for(int i = 0; i < userText.length() && i < showLine.length(); i++){
+        if (userText.data()[i] == showLine.at(i)){
+            showColorContents += showLine.at(i);
+        } else {
+            showColorContents += "<span style='color:red;'>" + QString(showLine.at(i)) + "</span>";
+        }
+    }
+    showColorContents = "<span style='background-color:#ccc;float;'>" + showColorContents + "</span>";
+    if (userText.length() <= showLine.length()){
+        showColorContents += showLine.right(showLine.length() - userText.length());
+    }
+    if (showColorContents.length() > 0){
+        ui->textEdit_course->setHtml(showColorContents);
+    }
+}

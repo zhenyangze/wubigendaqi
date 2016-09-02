@@ -20,6 +20,8 @@
 #include <QHBoxLayout>
 #include <QSpacerItem>
 #include <QProcess>
+#include <QTextCursor>
+#include <QTextCharFormat>
 
 namespace Ui {
 class MainWindow;
@@ -32,7 +34,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void readDi(QString filePath = "");
+    void readDi(QString filePath = ""); //读取字典
 
 public slots:
     void openFile(); //打开文件
@@ -44,6 +46,8 @@ public slots:
     void repeatSend(); //重新发送
     void showDi();//显示五笔拆解
     void timeUpdate(); //每一秒更新
+    void setLineColor();//设置字体颜色
+
 
 private:
     Ui::MainWindow *ui;

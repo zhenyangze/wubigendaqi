@@ -237,3 +237,5 @@ void WFileterForm::saveIni(){
         <<ui->checkBox_dingshi->isChecked();
     file.close();
 }
+
+
