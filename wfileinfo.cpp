@@ -40,3 +40,15 @@ QString WFileInfo::getFileContents(QString filePath){
     file.close();
     return this->fileContents;
 }
+QString WFileInfo::getFileName(QString filePath)
+{
+    QString fileName;
+    if (filePath.length() > 0){
+        fileName = filePath;
+    } else {
+        fileName = this->filePath;
+    }
+
+    QFileInfo *fileInfo = new QFileInfo(fileName);
+    return fileInfo->baseName();
+}

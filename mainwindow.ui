@@ -20,7 +20,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:#f3f2f3;;</string>
+   <string notr="true">background-color:rgb(64, 66, 68);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -36,7 +36,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QLabel" name="label_time">
+       <widget class="QLabel" name="label_jishi">
         <property name="minimumSize">
          <size>
           <width>60</width>
@@ -268,7 +268,7 @@ background-color: rgb(96,76,88);</string>
          </size>
         </property>
         <property name="toolTip">
-         <string>文字总数</string>
+         <string>当前进度</string>
         </property>
         <property name="styleSheet">
          <string notr="true">border:1px solid #000;
@@ -276,7 +276,7 @@ max-height:16;
 background-color: rgb(96,100,80);</string>
         </property>
         <property name="text">
-         <string>00/00</string>
+         <string>0.00%</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -380,9 +380,56 @@ background-color:#fff;</string>
       </property>
      </widget>
     </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_wubi">
+        <property name="minimumSize">
+         <size>
+          <width>70</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>五笔拆解</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border:1px solid #000;
+max-height:16;
+background-color: rgb(71,94,108);</string>
+        </property>
+        <property name="text">
+         <string>五笔拆解</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_time">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <action name="action_open">
    <property name="text">
     <string>打开文件</string>

@@ -7,6 +7,8 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <QTextCodec>
+#include <QFileInfo>
+#include <QFile>
 
 class WFileInfo : public QWidget
 {
@@ -21,6 +23,7 @@ public:
     void setFilePath(QString filePath);
     QString getFilePath();
     QString getFileContents(QString filePath = "");
+    QString getFileName(QString filePath = "");
 
 signals:
 

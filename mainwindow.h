@@ -47,6 +47,7 @@ public slots:
     void showDi();//显示五笔拆解
     void timeUpdate(); //每一秒更新
     void setLineColor();//设置字体颜色
+    void getProgress();//获取当前进度
 
 
 private:

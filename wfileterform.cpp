@@ -15,7 +15,7 @@ WFileterForm::WFileterForm(QWidget *parent) :
 
     //输入限制
     //ui->lineEdit_linenum->setValidator(new QIntValidator(0, 100, this));
-    ui->lineEdit_wordnum->setValidator(new QIntValidator(0, 50, this));
+    ui->lineEdit_wordnum->setValidator(new QIntValidator(0, 1500, this));
     ui->lineEdit_time->setValidator(new QDoubleValidator(0.01, 10.00, 2));
 
 
@@ -64,7 +64,7 @@ void WFileterForm::on_pushButton_addFile_clicked()
     this->saveIni();
 }
 
-//选择文件进行练习
+//选择文件
 void WFileterForm::selectItemFIle(QListWidgetItem *item){
     QString filePath = item->text();
     QFileInfo *fileInfo = new QFileInfo(filePath);
@@ -80,7 +80,7 @@ void WFileterForm::selectItemFIle(QListWidgetItem *item){
     this->saveIni();
 }
 
-//组合数据，传递给全局类
+//点击发送按钮，组合数据，传递给全局类
 void WFileterForm::on_pushButton_send_clicked()
 {
     this->saveIni();
@@ -91,6 +91,7 @@ void WFileterForm::on_pushButton_send_clicked()
     WFileInfo *fileInfo = new WFileInfo;
     //fileInfo->setFilePath(WfilePipi::filePath);
     WfilePipi::fileContents = fileInfo->getFileContents(WfilePipi::filePath);
+    WfilePipi::fileName = fileInfo->getFileName(WfilePipi::filePath);
     //清除空格
 
 
@@ -130,7 +131,7 @@ void WFileterForm::on_pushButton_send_clicked()
     for(int i = 0; i < contentsLength;i++){
 
         tmpStr = tempStrList[i];
-        tmpStr.trimmed();
+        tmpStr = tmpStr.simplified().trimmed();
         if (tmpStr.length() == 0){
             continue;
         }
@@ -152,6 +153,12 @@ void WFileterForm::on_pushButton_send_clicked()
 
     //index
     WfilePipi::index = 0;
+
+    //contentType
+    WfilePipi::contentType = "单字";
+
+    //contentCount
+    WfilePipi::contentCount = WfilePipi::contentList.join("").length();
 
     //totaltime
     WfilePipi::totalTime = totalCount * (ui->lineEdit_time->text().toDouble());

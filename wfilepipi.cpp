@@ -1,7 +1,10 @@
 #include "wfilepipi.h"
 
 QString WfilePipi::filePath = "";
+QString WfilePipi::fileName = "";
 QString WfilePipi::fileContents = "";
+QString WfilePipi::contentType = "";
+int WfilePipi::contentCount = 0;
 QStringList WfilePipi::contentList = QStringList() << "";
 bool WfilePipi::isLimit = false;
 double WfilePipi::totalTime = 0;

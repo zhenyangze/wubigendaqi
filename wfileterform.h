@@ -13,8 +13,6 @@
 #include <QIntValidator>
 #include <QDoubleValidator>
 #include <QPixmap>
-#include <QDir>
-#include <QFileInfo>
 #include "wfilepipi.h"
 #include <QDir>
 #include <QFile>
