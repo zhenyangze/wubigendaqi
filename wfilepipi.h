@@ -17,6 +17,8 @@ public:
     static bool isLimit; //是否时间限制
     static double totalTime; //总时间
     static int index; //当前索引
+
+    static bool isStart;//是否开始
 };
 
 #endif // WFILEPIPI_H

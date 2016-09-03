@@ -22,6 +22,7 @@
 #include <QProcess>
 #include <QTextCursor>
 #include <QTextCharFormat>
+#include <QWidget>
 
 namespace Ui {
 class MainWindow;
@@ -35,6 +36,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void readDi(QString filePath = ""); //读取字典
+    //void keyReleaseEvent(QKeyEvent *); //键盘按下
+    bool eventFilter(QObject *, QEvent *); //事件过滤
 
 public slots:
     void openFile(); //打开文件
@@ -48,7 +51,12 @@ public slots:
     void timeUpdate(); //每一秒更新
     void setLineColor();//设置字体颜色
     void getProgress();//获取当前进度
+    void startEdit(); //开始编辑
+    void endEdit();//结束编辑
 
+signals:
+    void setStartStatus();//设置IsStart为true
+    void cancelStartStatus();//设置isStart为false
 
 private:
     Ui::MainWindow *ui;

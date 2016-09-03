@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //样式设置
 
+
     //状态栏
 
     //文件操作下拉
@@ -44,16 +45,20 @@ MainWindow::MainWindow(QWidget *parent) :
     //字典
     this->readDi();
 
+    //事件过滤
+    ui->plainTextEdit_input->installEventFilter(this);
+
     //slot
-    connect(actionOpen, SIGNAL(triggered(bool)), this, SLOT(openFile()));
-    connect(actionExit, SIGNAL(triggered(bool)), this, SLOT(exit()));
+    connect(actionOpen, SIGNAL(triggered(bool)), this, SLOT(openFile())); //选择文件
+    connect(actionExit, SIGNAL(triggered(bool)), this, SLOT(exit())); //退出
     connect(actionTest, SIGNAL(triggered(bool)), this, SLOT(test()));
-    connect(actionRepeat, SIGNAL(triggered(bool)), this, SLOT(repeatSend()));
-    connect(ui->textEdit_course, SIGNAL(textChanged()), this, SLOT(showDi()));
-    connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(showDi()));
-    connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(setLineColor()));
-    connect(ui->textEdit_course, SIGNAL(textChanged()), this, SLOT(getProgress()));
-    connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(getProgress()));
+    connect(actionRepeat, SIGNAL(triggered(bool)), this, SLOT(repeatSend())); //重新发文
+    connect(ui->textEdit_course, SIGNAL(textChanged()), this, SLOT(showDi())); //查询五笔
+    connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(showDi())); //查询五笔
+    connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(setLineColor())); //设置字体颜色
+    connect(ui->textEdit_course, SIGNAL(textChanged()), this, SLOT(getProgress()));//更新进度
+    connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(getProgress())); //更新进度
+    //connect(ui->plainTextEdit_input, SIGNAL(2)
 
     //timer
     QTimer *timer = new QTimer(this);
@@ -70,6 +75,7 @@ MainWindow::~MainWindow()
 void MainWindow::openFile(){
       WFileterForm *filterForm = new WFileterForm();
       connect(filterForm, SIGNAL(noticeMainStart()), this, SLOT(yiedText()));
+      filterForm->setStyleSheet("QLabel {color:#4f4f4f;}QPushButton{color:#4f4f4f;}");
       filterForm->show();
 }
 
@@ -226,4 +232,26 @@ void MainWindow::getProgress(){
     qDebug() << totalCount << allReady;
     QString showProgress = QString::number(progress, 'f', 2);
     ui->label_wordnum->setText(showProgress + "%");
+}
+
+
+void MainWindow::startEdit(){
+
+}
+void MainWindow::endEdit(){
+
+}
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *e){
+    if(obj == ui->plainTextEdit_input){
+        if (e->type() == QEvent::KeyRelease){
+            emit startEdit();
+        }
+
+        if (e->type() == QEvent::FocusOut){
+            emit endEdit();
+        }
+
+    }
+    return false;
 }
