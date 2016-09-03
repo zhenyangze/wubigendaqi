@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QStringList>
+#include <QMap>
 
 class WfilePipi
 {
@@ -16,9 +17,22 @@ public:
     static QStringList contentList; //单个列表
     static bool isLimit; //是否时间限制
     static double totalTime; //总时间
+
     static int index; //当前索引
 
-    static bool isStart;//是否开始
+    static bool isStart;//编辑是否开始
+    static bool isEnd;//编辑是否结束
+
+
+    static int userTime; //用户练习时间
+    static int userKeyDownNum; //用户按键次数
+    static int userWordNum; //用户输入文字数量
+    static int userDeleteNum; //用户回改数
+    static QMap<int, int> userCorrectNum; //错误字数 //map保存每次的数量
+    static QString userOldInput; //用户老的输入数据
+    static QString userNewInput; //用户新的输入数据
+
+    static void initUserInfo();
 };
 
 #endif // WFILEPIPI_H

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>485</width>
-    <height>325</height>
+    <height>336</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -47,9 +47,7 @@
          <string>当前打字时间</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-max-height:16;
-background-color: #ccc;
+         <string notr="true">border:1px solid green;max-height:16;background-color: #ccc;
 </string>
         </property>
         <property name="text">
@@ -85,30 +83,6 @@ max-height:16;</string>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_correct">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string>正确率</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-background-color:rgb(72, 127, 86);
-max-height:16;</string>
-        </property>
-        <property name="text">
-         <string>0.00</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QLabel" name="label_huigai">
         <property name="minimumSize">
          <size>
@@ -125,7 +99,31 @@ background-color: rgb(209, 122, 86);
 max-height:16;</string>
         </property>
         <property name="text">
-         <string>0.00</string>
+         <string>0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_correct">
+        <property name="minimumSize">
+         <size>
+          <width>60</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>正确率</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border:1px solid #000;
+background-color:rgb(72, 127, 86);
+max-height:16;</string>
+        </property>
+        <property name="text">
+         <string>0.00%</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -149,7 +147,7 @@ max-height:16;
 background-color: rgb(71,94,108);</string>
         </property>
         <property name="text">
-         <string>0.00</string>
+         <string>0.00%</string>
         </property>
         <property name="textFormat">
          <enum>Qt::AutoText</enum>
@@ -176,7 +174,7 @@ max-height:16;
 background-color: rgb(71,94,108);</string>
         </property>
         <property name="text">
-         <string>0.00</string>
+         <string>0.00%</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

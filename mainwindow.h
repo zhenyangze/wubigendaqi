@@ -54,6 +54,15 @@ public slots:
     void startEdit(); //开始编辑
     void endEdit();//结束编辑
 
+    void countUserWord();//统计用户输入字数
+    void countUserKeyDown(); //统计用户按了多少次键
+    void countUserSpeed(); //用户打字速度
+    void countUserCorrect(); //统计用户正确率
+    void countUserKeyDownPerSeconds(); //每秒按键数
+    void countUserKeyDownPerWord(); //每字按键数
+
+    void checkInput();// 检测输入，如果输入字数符合，则转下一段
+
 signals:
     void setStartStatus();//设置IsStart为true
     void cancelStartStatus();//设置isStart为false
