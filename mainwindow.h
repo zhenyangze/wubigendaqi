@@ -62,6 +62,7 @@ public slots:
     void countUserKeyDownPerWord(); //每字按键数
 
     void checkInput();// 检测输入，如果输入字数符合，则转下一段
+    void saveUserData(); //保存用户记录
 
 signals:
     void setStartStatus();//设置IsStart为true

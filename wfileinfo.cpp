@@ -29,7 +29,7 @@ QString WFileInfo::getFileContents(QString filePath){
     QFile file(fileName);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        QMessageBox::warning(this,"Warnning","can't open",QMessageBox::Yes);
+        QMessageBox::warning(this,"Warning","can't open",QMessageBox::Yes);
     }
     QTextStream stream(&file);
     stream.setCodec(code);//对输出流的设置

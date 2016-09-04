@@ -16,20 +16,28 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     wfileinfo.cpp \
     wfileterform.cpp \
-    wfilterdanzi.cpp \
-    wfilepipi.cpp
+    wfilepipi.cpp \
+    wfilterstatement.cpp \
+    wfilterword.cpp \
+    wfiltercentence.cpp
 
 HEADERS  += mainwindow.h \
     wfileinfo.h \
     wfileterform.h \
-    wfilterdanzi.h \
-    wfilepipi.h
+    wfilepipi.h \
+    wfilterstatement.h \
+    wfilterword.h \
+    wfiltercentence.h
 
 FORMS    += mainwindow.ui \
-    wfileterform.ui
+    wfileterform.ui \
+    wfilterstatement.ui \
+    wfilterword.ui \
+    wfiltercentence.ui
 
 DISTFILES += \
-    img/file.png
+    img/file.png \
+    img/icon.ico
 
 RESOURCES += \
     source.qrc

@@ -3,5 +3,6 @@
         <file>img/file.png</file>
         <file>data/di.txt</file>
         <file>img/bg.jpg</file>
+        <file>img/icon.ico</file>
     </qresource>
 </RCC>

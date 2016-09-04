@@ -9,6 +9,12 @@ MainWindow::MainWindow(QWidget *parent) :
     //当前路径
     QDir dir;
 
+    //创建目录
+    QString dataPath = QDir::currentPath() + "/data";
+    if(!dir.exists(dataPath)){
+        dir.mkdir(dataPath);
+    }
+
     //居中设置
     QDesktopWidget* desktop = QApplication::desktop();
     int width = desktop->width();
@@ -34,12 +40,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QAction *actionRepeat = new QAction("重发", menu);
 
     QAction *actionExit = new QAction("退出", menu);
-    QAction *actionTest = new QAction("测试", menu);
+    //QAction *actionTest = new QAction("测试", menu);
 
     menu->addAction(actionOpen);
-    menu->addAction(actionExit);
-    menu->addAction(actionTest);
     menu->addAction(actionRepeat);
+    menu->addAction(actionExit);
+    //menu->addAction(actionTest);
     ui->pushButton_file->setMenu(menu);
 
     //字典
@@ -51,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //slot
     connect(actionOpen, SIGNAL(triggered(bool)), this, SLOT(openFile())); //选择文件
     connect(actionExit, SIGNAL(triggered(bool)), this, SLOT(exit())); //退出
-    connect(actionTest, SIGNAL(triggered(bool)), this, SLOT(test()));
+    //connect(actionTest, SIGNAL(triggered(bool)), this, SLOT(test()));
     connect(actionRepeat, SIGNAL(triggered(bool)), this, SLOT(repeatSend())); //重新发文
     connect(ui->textEdit_course, SIGNAL(textChanged()), this, SLOT(showDi())); //查询五笔
     connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(showDi())); //查询五笔
@@ -69,6 +75,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->timeUpdate();
     connect(timer,SIGNAL(timeout()),this,SLOT(timeUpdate()));
     connect(timer, SIGNAL(timeout()), this, SLOT(countUserSpeed()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(countUserKeyDownPerSeconds()));
     //关联定时器计满信号和相应的槽函数
     timer->start(1000);
 }
@@ -131,6 +138,8 @@ void MainWindow::yiedText(){
 
     ui->plainTextEdit_input->setPlainText("");
 
+    WfilePipi::userOldInput = "";
+
     WfilePipi::index++;
 
      //显示当前段
@@ -147,7 +156,28 @@ void MainWindow::showDi(){
     if (sourceText.length() <= userText.length()){
         return;
     }
-    QString currentWord = sourceText.at(userText.length());
+
+    QString currentWord;
+    if(WfilePipi::contentType == "词组"){
+        int currentIndex = WfilePipi::index - 1;
+        if (currentIndex < 0){
+            currentIndex = 0;
+        }
+        QString showLineStr = WfilePipi::contentList.at(currentIndex);
+        QStringList showLineList = showLineStr.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+
+        QStringList userTextList = userText.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+        if(showLineList.length() > userTextList.length()) {
+            qDebug() << showLineList.length();
+            currentWord = showLineList.at(userTextList.length());
+            qDebug() << currentWord;
+        } else {
+            return;
+        }
+    } else {
+        currentWord = sourceText.at(userText.length());
+    }
+
     currentWord = currentWord.trimmed();
     if (0 == currentWord.length()){
         return;
@@ -220,6 +250,10 @@ void MainWindow::setLineColor(){
     int index = WfilePipi::index - 1;
     if (index <= 0) {
         index = 0;
+    }
+
+    if(WfilePipi::contentList.length() == 0){
+        return;
     }
     QString showLine = WfilePipi::contentList.at(index);
 
@@ -316,6 +350,8 @@ void MainWindow::countUserSpeed(){
     QString userSpeedStr = "0.00";
     if(WfilePipi::userTime > 0){
         userSpeed = (WfilePipi::userWordNum + 0.00) / WfilePipi::userTime * 60;
+        //根据打字速度调整输入框样式
+        //未完
         userSpeedStr = QString::number(userSpeed, 'f', 2);
     }
     ui->label_speed->setText(userSpeedStr);
@@ -343,14 +379,16 @@ void MainWindow::countUserCorrect(){
 //检测输入,输入长度大于当前显示则转下一段
 void MainWindow::checkInput(){
     int userInputLength = ui->plainTextEdit_input->toPlainText().length();
-    if (userInputLength <= 0){
+    if (userInputLength <= 0 || WfilePipi::contentList.length() == 0 || WfilePipi::index == 0){
         return;
     }
-
     QString currentLine = WfilePipi::contentList.at(WfilePipi::index - 1);
     int currentLineNum = currentLine.length();
     if(true == WfilePipi::isStart &&  userInputLength>= currentLineNum){
         WfilePipi::isStart = false;
+        //此时保存用户记录
+        this->saveUserData();
+
         this->yiedText();
     }
 }
@@ -361,7 +399,7 @@ void MainWindow::countUserKeyDownPerSeconds(){
     if (WfilePipi::userTime > 0){
         percent = (WfilePipi::userKeyDownNum + 0.00) / WfilePipi::userTime;
     }
-    QString percentStr = QString::number(percent, 'f', 2) + "%";
+    QString percentStr = QString::number(percent, 'f', 2);
     ui->label_anjian_second->setText(percentStr);
 }
 
@@ -371,8 +409,12 @@ void MainWindow::countUserKeyDownPerWord(){
     if (WfilePipi::userWordNum > 0){
         percent = (WfilePipi::userKeyDownNum + 0.00) / WfilePipi::userWordNum;
     }
-    QString percentStr = QString::number(percent, 'f', 2) + "%";
+    QString percentStr = QString::number(percent, 'f', 2);
     ui->label_anjian_zi->setText(percentStr);
+}
+
+void MainWindow::saveUserData(){
+
 }
 
 //触发开始编辑事件

@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="source.qrc">
+    <normaloff>:/source/img/icon.ico</normaloff>:/source/img/icon.ico</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">background-color:rgb(64, 66, 68);</string>
   </property>
@@ -147,7 +151,7 @@ max-height:16;
 background-color: rgb(71,94,108);</string>
         </property>
         <property name="text">
-         <string>0.00%</string>
+         <string>0.00</string>
         </property>
         <property name="textFormat">
          <enum>Qt::AutoText</enum>
@@ -174,7 +178,7 @@ max-height:16;
 background-color: rgb(71,94,108);</string>
         </property>
         <property name="text">
-         <string>0.00%</string>
+         <string>0.00</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -372,9 +376,15 @@ background-color: rgb(96,100,80);</string>
         <pointsize>16</pointsize>
        </font>
       </property>
+      <property name="toolTip">
+       <string/>
+      </property>
       <property name="styleSheet">
        <string notr="true">margin-bottom:-5;
 background-color:#fff;</string>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
       </property>
      </widget>
     </item>
@@ -445,6 +455,8 @@ background-color: rgb(71,94,108);</string>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="source.qrc"/>
+ </resources>
  <connections/>
 </ui>
