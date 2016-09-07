@@ -23,6 +23,7 @@
 #include <QTextCursor>
 #include <QTextCharFormat>
 #include <QWidget>
+#include "wdb.h"
 
 namespace Ui {
 class MainWindow;
@@ -74,6 +75,8 @@ private:
     QLabel *label_time;
     QLabel *label_step;
     QHash<QString, QString> diList;
+    Wdb *db;
+
 
 };
 

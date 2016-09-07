@@ -4,5 +4,6 @@
         <file>data/di.txt</file>
         <file>img/bg.jpg</file>
         <file>img/icon.ico</file>
+        <file>data/db_user_record.txt</file>
     </qresource>
 </RCC>

@@ -9,6 +9,7 @@ QStringList WfilePipi::contentList = QStringList() << "";
 bool WfilePipi::isLimit = false;
 double WfilePipi::totalTime = 0;
 
+int WfilePipi::ukey = 0;
 int WfilePipi::index = 0;
 bool WfilePipi::isStart =  false;
 bool WfilePipi::isEnd = false;
@@ -21,12 +22,22 @@ QMap<int, int> WfilePipi::userCorrectNum;
 QString WfilePipi::userNewInput = "";
 QString WfilePipi::userOldInput = "";
 
+double WfilePipi::userSpeed = 0.00;
+double WfilePipi::correct_rate = 0.00;
+double WfilePipi::key_per_second = 0.00;
+double WfilePipi::key_per_word = 0.00;
+double WfilePipi::current_progress = 0.00;
+
 WfilePipi::WfilePipi()
 {
 
 }
 
 void WfilePipi::initUserInfo(){
+    QDateTime dt = QDateTime::currentDateTime();
+
+    WfilePipi::ukey = dt.toTime_t(); //唯一
+
     WfilePipi::isEnd = false;
     WfilePipi::isStart = false;
     WfilePipi::userTime = 0;
@@ -39,4 +50,20 @@ void WfilePipi::initUserInfo(){
 
     WfilePipi::userNewInput = "";
     WfilePipi::userOldInput = "";
+
+    WfilePipi::userSpeed = 0.00;
+    WfilePipi::correct_rate = 0.00;
+    WfilePipi::key_per_second = 0.00;
+    WfilePipi::key_per_word = 0.00;
+    WfilePipi::current_progress = 0.00;
+}
+
+int WfilePipi::getUserCorrectNum(){
+    int correctNum = 0;
+    QMap<int, int> userCorrectList = WfilePipi::userCorrectNum;
+    QMapIterator<int, int> it(userCorrectList);
+    while(it.hasNext()){
+        correctNum += it.next().value();
+    }
+    return correctNum;
 }

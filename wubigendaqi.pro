@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     wfilepipi.cpp \
     wfilterstatement.cpp \
     wfilterword.cpp \
-    wfiltercentence.cpp
+    wfiltercentence.cpp \
+    wdb.cpp
 
 HEADERS  += mainwindow.h \
     wfileinfo.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     wfilepipi.h \
     wfilterstatement.h \
     wfilterword.h \
-    wfiltercentence.h
+    wfiltercentence.h \
+    wdb.h
 
 FORMS    += mainwindow.ui \
     wfileterform.ui \
@@ -37,7 +39,8 @@ FORMS    += mainwindow.ui \
 
 DISTFILES += \
     img/file.png \
-    img/icon.ico
+    img/icon.ico \
+    data/db_user_record.txt
 
 RESOURCES += \
     source.qrc

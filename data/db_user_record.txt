@@ -1,0 +1,18 @@
+CREATE TABLE if not exists wubi_user_record (
+  id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+  ukey integer(13),
+  spend_time integer(11),
+  key_count integer(11),
+  word_count integer(11),
+  delete_count integer(11),
+  correct_count integer(11),
+  speed double(6),
+  correct_rate double(6),
+  key_per_second double(4),
+  key_per_word double(4),
+  type char(20),
+  title varchar(128),
+  current_position integer(11),
+  current_progress double(6),
+  ctime integer(11)
+);

@@ -4,6 +4,8 @@
 #include <QString>
 #include <QStringList>
 #include <QMap>
+#include <QDateTime>
+#include <QMapIterator>
 
 class WfilePipi
 {
@@ -18,6 +20,7 @@ public:
     static bool isLimit; //是否时间限制
     static double totalTime; //总时间
 
+    static int ukey; //唯一key 重复发文的key不一样
     static int index; //当前索引
 
     static bool isStart;//编辑是否开始
@@ -32,7 +35,15 @@ public:
     static QString userOldInput; //用户老的输入数据
     static QString userNewInput; //用户新的输入数据
 
+    static double userSpeed; //用户打字速度
+    static double correct_rate; //正确率
+    static double key_per_second; //每秒按键
+    static double key_per_word; //每字按键
+    static double current_progress;//当前进度
+
     static void initUserInfo();
+
+    static int getUserCorrectNum();
 };
 
 #endif // WFILEPIPI_H

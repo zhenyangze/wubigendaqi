@@ -15,6 +15,10 @@ MainWindow::MainWindow(QWidget *parent) :
         dir.mkdir(dataPath);
     }
 
+    //数据 库加载
+    this->db = new Wdb;
+    this->db->connect(dataPath + "/user.db");
+
     //居中设置
     QDesktopWidget* desktop = QApplication::desktop();
     int width = desktop->width();
@@ -26,8 +30,6 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setMinimumSize(this->size());
     this->setWindowTitle(tr("霹雳五笔跟打器"));
     ui->textEdit_course->setHtml("");
-
-
 
     //样式设置
 
@@ -76,12 +78,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer,SIGNAL(timeout()),this,SLOT(timeUpdate()));
     connect(timer, SIGNAL(timeout()), this, SLOT(countUserSpeed()));
     connect(timer, SIGNAL(timeout()), this, SLOT(countUserKeyDownPerSeconds()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(countUserKeyDownPerWord()));
     //关联定时器计满信号和相应的槽函数
     timer->start(1000);
 }
 
 MainWindow::~MainWindow()
 {
+    this->db->close();//关闭数据库
+
     delete ui;
 }
 
@@ -113,6 +118,8 @@ void MainWindow::startSend(){
 //重新发文
 void MainWindow::repeatSend()
 {
+    QDateTime dt = QDateTime::currentDateTime();
+    WfilePipi::ukey = dt.toTime_t(); //保证唯一
     WfilePipi::index = 0;
     this->yiedText();
 }
@@ -168,9 +175,7 @@ void MainWindow::showDi(){
 
         QStringList userTextList = userText.split(QRegExp("\\s+"), QString::SkipEmptyParts);
         if(showLineList.length() > userTextList.length()) {
-            qDebug() << showLineList.length();
             currentWord = showLineList.at(userTextList.length());
-            qDebug() << currentWord;
         } else {
             return;
         }
@@ -315,11 +320,13 @@ void MainWindow::getProgress(){
 
     //判断是否需要严格校验
     if (allReady == totalCount){
+        WfilePipi::isStart = false;
         WfilePipi::isEnd = true;
     }
 
     QString showProgress = QString::number(progress, 'f', 2);
     ui->label_wordnum->setText(showProgress + "%");
+    WfilePipi::current_progress = showProgress.toDouble();
 }
 
 //统计用户输入字数
@@ -353,6 +360,7 @@ void MainWindow::countUserSpeed(){
         //根据打字速度调整输入框样式
         //未完
         userSpeedStr = QString::number(userSpeed, 'f', 2);
+        WfilePipi::userSpeed = userSpeedStr.toDouble(); //记录
     }
     ui->label_speed->setText(userSpeedStr);
     ui->label_huigai->setText(QString::number(WfilePipi::userDeleteNum));
@@ -360,20 +368,17 @@ void MainWindow::countUserSpeed(){
 
 //统计正确率
 void MainWindow::countUserCorrect(){
-    int correctNum = 0;
-
-    QMap<int, int> userCorrectList = WfilePipi::userCorrectNum;
-    QMapIterator<int, int> it(userCorrectList);
-    while(it.hasNext()){
-        correctNum += it.next().value();
+    if (WfilePipi::isStart != true){
+        return;
     }
-
+    int correctNum = WfilePipi::getUserCorrectNum();
     double percent = 0.00;
     if (WfilePipi::userWordNum > 0){
         percent = (1 - (correctNum + 0.00)/WfilePipi::userWordNum) * 100;
     }
-    QString percentStr = QString::number(percent, 'f', 2) + "%";
-    ui->label_correct->setText(percentStr);
+    QString percentStr = QString::number(percent, 'f', 2);
+    ui->label_correct->setText(percentStr + "%");
+    WfilePipi::correct_rate = percentStr.toDouble();
 }
 
 //检测输入,输入长度大于当前显示则转下一段
@@ -401,6 +406,7 @@ void MainWindow::countUserKeyDownPerSeconds(){
     }
     QString percentStr = QString::number(percent, 'f', 2);
     ui->label_anjian_second->setText(percentStr);
+    WfilePipi::key_per_second = percentStr.toDouble();
 }
 
 //每个字按键数
@@ -411,10 +417,13 @@ void MainWindow::countUserKeyDownPerWord(){
     }
     QString percentStr = QString::number(percent, 'f', 2);
     ui->label_anjian_zi->setText(percentStr);
+    WfilePipi::key_per_word = percentStr.toDouble();
 }
 
 void MainWindow::saveUserData(){
-
+    if(WfilePipi::index > 0){
+        this->db->saveResult();
+    }
 }
 
 //触发开始编辑事件
