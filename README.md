@@ -1,6 +1,8 @@
 # wubigendaqi
 模仿添雨跟打器，感谢。
+
 qt写的五笔跟打器，支持在windows, mac, linux上运行。
+
 没有静态编译，暂时需要有安装qt的环境才能运行。
 
 # 截图
