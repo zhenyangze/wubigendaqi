@@ -9,7 +9,7 @@ WfilterCentence::WfilterCentence(QWidget *parent) :
 
 
     //ini文件
-    this->iniFile = QDir::currentPath() + "/data/filter_centence.ini";
+    this->iniFile = QCoreApplication::applicationDirPath() + "/data/filter_centence.ini";
 
     //输入限制
     //ui->lineEdit_linenum->setValidator(new QIntValidator(0, 100, this));

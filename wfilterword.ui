@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>390</width>
-    <height>300</height>
+    <height>336</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -74,7 +74,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit_wordnum">
        <property name="text">
-        <string>30</string>
+        <string>28</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

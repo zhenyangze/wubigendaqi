@@ -10,9 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QDir dir;
 
     //创建目录
-    QString dataPath = QDir::currentPath() + "/data";
+    QString dataPath = QCoreApplication::applicationDirPath() + "/data";
+    QString stylePath = QCoreApplication::applicationDirPath() + "/style";
     if(!dir.exists(dataPath)){
         dir.mkdir(dataPath);
+    }
+    if(!dir.exists(stylePath)){
+        dir.mkdir(stylePath);
     }
 
     //数据 库加载
@@ -32,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->textEdit_course->setHtml("");
 
     //样式设置
-
+    this->changeStyle();
 
     //状态栏
 
@@ -455,4 +459,23 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e){
 
     }
     return false;
+}
+
+//改变样式
+void MainWindow::changeStyle(){
+   QString stylePath = "";
+    if (QFile::exists(QCoreApplication::applicationDirPath() + "/style/style.qss")){
+        stylePath = QCoreApplication::applicationDirPath() + "/style/style.qss";
+    } else {
+        stylePath = ":/source/style/style_default.qss";
+        QFile::copy(stylePath, QCoreApplication::applicationDirPath() + "/style/style.qss");
+    }
+
+    QFile file(stylePath);
+
+    file.open(QFile::ReadOnly);
+
+    this->setStyleSheet(file.readAll());
+
+    file.close();
 }

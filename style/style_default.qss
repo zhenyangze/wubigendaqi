@@ -1,0 +1,79 @@
+MainWindow{
+        background-color:rgb(64, 66, 68);
+}
+
+QLabel {
+    color:white;
+}
+
+QPushButton{
+    color:white;
+}
+
+#label_jishi{
+        border:1px solid green;
+        max-height:16;
+        background-color: #ccc;
+}
+#label_speed{
+        border:1px solid #000;
+        background-color: rgb(209,90,92);
+        max-height:16;
+}
+#label_huigai{
+        border:1px solid #000;
+        background-color: rgb(209, 122, 86);
+        max-height:16;
+}
+#label_correct{
+        border:1px solid #000;
+        background-color:rgb(72, 127, 86);
+        max-height:16;
+}
+#label_anjian_second{
+        border:1px solid #000;
+        max-height:16;
+        background-color: rgb(71,94,108);
+}
+#label_anjian_zi{
+        border:1px solid #000;
+        max-height:16;
+        background-color: rgb(71,94,108);
+}
+#label_index{
+        border:1px solid #000;
+        max-height:16;
+        background-color: rgb(71,94,108);
+}
+#label_title{
+        border:1px solid #000;
+        max-height:16;
+        background-color: rgb(95,59,69);
+}
+#label_type{
+        border:1px solid #000;
+        max-height:16;
+        background-color: rgb(96,76,88);
+}
+#label_wordnum{
+        border:1px solid #000;
+        max-height:16;
+        background-color: rgb(96,100,80);
+}
+#pushButton_file{
+        border:1px solid #000;
+}
+#textEdit_course{
+        background-color:#fff;
+}
+#plainTextEdit_input{
+        background-color:#fff;
+}
+#label_wubi{
+        border:1px solid #000;
+        max-height:16;
+        background-color: rgb(71,94,108);
+}
+#label_time{
+        color:white;
+}

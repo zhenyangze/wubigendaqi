@@ -65,6 +65,8 @@ public slots:
     void checkInput();// 检测输入，如果输入字数符合，则转下一段
     void saveUserData(); //保存用户记录
 
+    void changeStyle();//改变样式
+
 signals:
     void setStartStatus();//设置IsStart为true
     void cancelStartStatus();//设置isStart为false

@@ -21,10 +21,10 @@
   </property>
   <property name="windowIcon">
    <iconset resource="source.qrc">
-    <normaloff>:/source/img/icon.ico</normaloff>:/source/img/icon.ico</iconset>
+    <normaloff>:/source/img/icon.icns</normaloff>:/source/img/icon.icns</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgb(64, 66, 68);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -51,8 +51,7 @@
          <string>当前打字时间</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid green;max-height:16;background-color: #ccc;
-</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>00:00:00</string>
@@ -74,9 +73,7 @@
          <string>打字速度(字/分)</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-background-color: rgb(209,90,92);
-max-height:16;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>0.00</string>
@@ -98,9 +95,7 @@ max-height:16;</string>
          <string>回改数</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-background-color: rgb(209, 122, 86);
-max-height:16;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>0</string>
@@ -122,9 +117,7 @@ max-height:16;</string>
          <string>正确率</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-background-color:rgb(72, 127, 86);
-max-height:16;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>0.00%</string>
@@ -146,9 +139,7 @@ max-height:16;</string>
          <string>每秒按键数</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-max-height:16;
-background-color: rgb(71,94,108);</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>0.00</string>
@@ -173,9 +164,7 @@ background-color: rgb(71,94,108);</string>
          <string>每字按键数</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-max-height:16;
-background-color: rgb(71,94,108);</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>0.00</string>
@@ -201,9 +190,7 @@ background-color: rgb(71,94,108);</string>
          <string>当前段数</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-max-height:16;
-background-color: rgb(71,94,108);</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;No.0&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -225,9 +212,7 @@ background-color: rgb(71,94,108);</string>
          <string>文章标题</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-max-height:16;
-background-color: rgb(95,59,69);</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>标题</string>
@@ -249,9 +234,7 @@ background-color: rgb(95,59,69);</string>
          <string>文章类型</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-max-height:16;
-background-color: rgb(96,76,88);</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>类型</string>
@@ -273,9 +256,7 @@ background-color: rgb(96,76,88);</string>
          <string>当前进度</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-max-height:16;
-background-color: rgb(96,100,80);</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>0.00%</string>
@@ -306,7 +287,7 @@ background-color: rgb(96,100,80);</string>
          <bool>false</bool>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>设置</string>
@@ -344,7 +325,7 @@ background-color: rgb(96,100,80);</string>
        <bool>true</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:#fff;</string>
+       <string notr="true"/>
       </property>
       <property name="verticalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -402,9 +383,7 @@ background-color:#fff;</string>
          <string>五笔拆解</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;
-max-height:16;
-background-color: rgb(71,94,108);</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>五笔拆解</string>
@@ -430,7 +409,7 @@ background-color: rgb(71,94,108);</string>
       <item>
        <widget class="QLabel" name="label_time">
         <property name="text">
-         <string>TextLabel</string>
+         <string/>
         </property>
        </widget>
       </item>
