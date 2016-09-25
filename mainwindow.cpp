@@ -50,6 +50,14 @@ MainWindow::MainWindow(QWidget *parent) :
     QAction *actionExit = new QAction("退出", menu);
     //QAction *actionTest = new QAction("测试", menu);
 
+    //快捷键
+    actionOpen->setShortcut(tr("ctrl+f"));
+    actionRepeat->setShortcut(tr("ctrl+r"));
+    actionPre->setShortcut(tr("ctrl+p"));
+    actionNext->setShortcut(tr("ctrl+n"));
+    actionUserRecord->setShortcut(tr("ctrl+h"));
+    actionExit->setShortcut(tr("ctrl+q"));
+
     menu->addAction(actionOpen);
     menu->addAction(actionRepeat);
     menu->addAction(actionPre);
