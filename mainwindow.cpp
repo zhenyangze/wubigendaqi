@@ -42,14 +42,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //文件操作下拉
     QMenu *menu = new QMenu;
-    QAction *actionOpen = new QAction("文件", menu);
+    QAction *actionOpen = new QAction("发文", menu);
     QAction *actionRepeat = new QAction("重发", menu);
-
+    QAction *actionPre = new QAction("上段", menu);
+    QAction *actionNext = new QAction("下段", menu);
+    QAction *actionUserRecord = new QAction("记录", menu);
     QAction *actionExit = new QAction("退出", menu);
     //QAction *actionTest = new QAction("测试", menu);
 
     menu->addAction(actionOpen);
     menu->addAction(actionRepeat);
+    menu->addAction(actionPre);
+    menu->addAction(actionNext);
+    menu->addAction(actionUserRecord);
     menu->addAction(actionExit);
     //menu->addAction(actionTest);
     ui->pushButton_file->setMenu(menu);
@@ -65,6 +70,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(actionExit, SIGNAL(triggered(bool)), this, SLOT(exit())); //退出
     //connect(actionTest, SIGNAL(triggered(bool)), this, SLOT(test()));
     connect(actionRepeat, SIGNAL(triggered(bool)), this, SLOT(repeatSend())); //重新发文
+    connect(actionPre, SIGNAL(triggered(bool)), this, SLOT(preText())); //上一段
+    connect(actionNext, SIGNAL(triggered(bool)), this, SLOT(nextText())); //下一段
+    connect(actionUserRecord, SIGNAL(triggered(bool)), this, SLOT(showUserRecord())); //显示用户的记录信息
+
     connect(ui->textEdit_course, SIGNAL(textChanged()), this, SLOT(showDi())); //查询五笔
     connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(showDi())); //查询五笔
     connect(ui->plainTextEdit_input, SIGNAL(textChanged()), this, SLOT(setLineColor())); //设置字体颜色
@@ -122,15 +131,51 @@ void MainWindow::startSend(){
 //重新发文
 void MainWindow::repeatSend()
 {
-    QDateTime dt = QDateTime::currentDateTime();
-    WfilePipi::ukey = dt.toTime_t(); //保证唯一
-    WfilePipi::index = 0;
+    if (WfilePipi::isPricatce == false){
+        QDateTime dt = QDateTime::currentDateTime();
+        WfilePipi::ukey = dt.toTime_t(); //保证唯一
+        WfilePipi::index = 0;
+        this->yiedText();
+    } else{
+        this->currentText();
+    }
+}
+
+//上一段
+void MainWindow::preText()
+{
+    if(false == WfilePipi::isPricatce){
+        return;
+    }
+    if (WfilePipi::index > 0){
+        WfilePipi::index--;
+    }
+    this->yiedText();
+}
+
+//当前段
+void MainWindow::currentText()
+{
+    if(false == WfilePipi::isPricatce){
+        return;
+    }
+    this->yiedText();
+}
+
+//下一段
+void MainWindow::nextText()
+{
+    if(false == WfilePipi::isPricatce){
+        return;
+    }
+    if (WfilePipi::index < (WfilePipi::contentCount - 1)){
+        WfilePipi::index++;
+    }
     this->yiedText();
 }
 
 //按段发文
 void MainWindow::yiedText(){
-
     if (WfilePipi::index >= WfilePipi::contentList.length()) {
         return;
     }
@@ -150,14 +195,16 @@ void MainWindow::yiedText(){
     ui->plainTextEdit_input->setPlainText("");
 
     WfilePipi::userOldInput = "";
-
-    WfilePipi::index++;
+    if (false == WfilePipi::isPricatce){
+        WfilePipi::index++;
+    }
 
      //显示当前段
     ui->label_index->setText("No." + QString::number(WfilePipi::index));
 
     //计算总数
     this->getProgress();
+
 }
 
 //显示五笔
@@ -256,7 +303,13 @@ void MainWindow::timeUpdate(){
 
 //当用户输入错误的字时，对原始字加颜色标示
 void MainWindow::setLineColor(){
-    int index = WfilePipi::index - 1;
+    int index;
+    //练习模式和测试模式的当前进度是不一样的
+    if (WfilePipi::isPricatce == true){
+        index = WfilePipi::index;
+    } else {
+        index = WfilePipi::index - 1;
+    }
     if (index <= 0) {
         index = 0;
     }
@@ -326,6 +379,9 @@ void MainWindow::getProgress(){
     if (allReady == totalCount){
         WfilePipi::isStart = false;
         WfilePipi::isEnd = true;
+
+        //保存用户数据
+        this->saveUserData();
     }
 
     QString showProgress = QString::number(progress, 'f', 2);
@@ -387,6 +443,9 @@ void MainWindow::countUserCorrect(){
 
 //检测输入,输入长度大于当前显示则转下一段
 void MainWindow::checkInput(){
+    if (true == WfilePipi::isPricatce){
+        return;
+    }
     int userInputLength = ui->plainTextEdit_input->toPlainText().length();
     if (userInputLength <= 0 || WfilePipi::contentList.length() == 0 || WfilePipi::index == 0){
         return;
@@ -425,7 +484,8 @@ void MainWindow::countUserKeyDownPerWord(){
 }
 
 void MainWindow::saveUserData(){
-    if(WfilePipi::index > 0){
+    //练习模式不保存数据
+    if(WfilePipi::index > 0 && false == WfilePipi::isPricatce){
         this->db->saveResult();
     }
 }
@@ -478,4 +538,10 @@ void MainWindow::changeStyle(){
     this->setStyleSheet(file.readAll());
 
     file.close();
+}
+
+//显示用户的记录信息
+void MainWindow::showUserRecord(){
+    WUserRecord *wu = new WUserRecord();
+    wu->show();
 }

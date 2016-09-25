@@ -13,6 +13,7 @@ int WfilePipi::ukey = 0;
 int WfilePipi::index = 0;
 bool WfilePipi::isStart =  false;
 bool WfilePipi::isEnd = false;
+bool WfilePipi::isPricatce = false;
 
 int WfilePipi::userTime = 0;
 int WfilePipi::userDeleteNum = 0;
@@ -38,8 +39,15 @@ void WfilePipi::initUserInfo(){
 
     WfilePipi::ukey = dt.toTime_t(); //唯一
 
-    WfilePipi::isEnd = false;
-    WfilePipi::isStart = false;
+    if (false == WfilePipi::isPricatce){
+        WfilePipi::isEnd = false;
+        WfilePipi::isStart = false;
+    } else {
+        WfilePipi::isEnd = true;
+        WfilePipi::isStart = false;
+    }
+
+
     WfilePipi::userTime = 0;
 
     WfilePipi::userTime = 0;

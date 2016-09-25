@@ -25,6 +25,7 @@ public:
 
     static bool isStart;//编辑是否开始
     static bool isEnd;//编辑是否结束
+    static bool isPricatce;// 是否是练习模式，练习模式不保存结果， 可以前后翻页
 
 
     static int userTime; //用户练习时间

@@ -6,7 +6,7 @@
 
 QT       += core gui sql
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = wubigendaqi
 TEMPLATE = app
@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     wfilterstatement.cpp \
     wfilterword.cpp \
     wfiltercentence.cpp \
-    wdb.cpp
+    wdb.cpp \
+    qcustomplot.cpp \
+    wuserrecord.cpp
 
 HEADERS  += mainwindow.h \
     wfileinfo.h \
@@ -29,13 +31,16 @@ HEADERS  += mainwindow.h \
     wfilterstatement.h \
     wfilterword.h \
     wfiltercentence.h \
-    wdb.h
+    wdb.h \
+    qcustomplot.h \
+    wuserrecord.h
 
 FORMS    += mainwindow.ui \
     wfileterform.ui \
     wfilterstatement.ui \
     wfilterword.ui \
-    wfiltercentence.ui
+    wfiltercentence.ui \
+    wuserrecord.ui
 
 DISTFILES += \
     img/file.png \
@@ -44,3 +49,4 @@ DISTFILES += \
 
 RESOURCES += \
     source.qrc
+UI_DIR=./UI

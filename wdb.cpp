@@ -66,6 +66,90 @@ id key
     }
 }
 
+//最近记录
+QMap<int, double> Wdb::getRecentRecord(){
+    QSqlQuery sqlQuery;
+    QMap<int, double> recordList;
+
+    int time;
+    double speed;
+
+    QString sql = "select ukey, speed from wubi_user_record group by ukey order by id desc limit 30;";
+    sqlQuery.prepare(sql);
+    if (sqlQuery.exec()){
+        while(sqlQuery.next())
+        {
+            time = sqlQuery.value(0).toInt();
+            speed = sqlQuery.value(1).toDouble();
+            recordList.insert(time, speed);
+        }
+    }
+    return recordList;
+}
+
+//最大速度
+double Wdb::getMaxSpeed(){
+    QSqlQuery sqlQuery;
+    double maxSpeed = 0.00;
+    QString sql = "select max(speed) from wubi_user_record limit 1;";
+    sqlQuery.prepare(sql);
+    if (sqlQuery.exec()){
+        while(sqlQuery.next())
+        {
+            maxSpeed = sqlQuery.value(0).toDouble();
+        }
+    }
+
+    return maxSpeed;
+}
+
+//花费时间
+int Wdb::getSpeedTime(){
+    QSqlQuery sqlQuery;
+    int spendTime = 0;
+    QString sql = "select max(spend_time) from wubi_user_record group by ukey;";
+    sqlQuery.prepare(sql);
+    if (sqlQuery.exec()){
+        while(sqlQuery.next())
+        {
+            spendTime += sqlQuery.value(0).toInt();
+        }
+    }
+
+    return spendTime;
+}
+
+//持续时间
+int Wdb::getStraightDay(){
+    QSqlQuery sqlQuery;
+    int preCtime = 0;
+    int currentCtime = 0;
+    QList<QString> dateList;
+    QString currentDate = "";
+    QString sql = "select ctime,date(ctime, 'unixepoch', 'localtime') as cdate from wubi_user_record GROUP by ukey order by ctime desc limit 1000;";
+    sqlQuery.prepare(sql);
+    if (sqlQuery.exec()){
+        while(sqlQuery.next())
+        {
+            currentCtime = sqlQuery.value(0).toInt();
+            currentDate = sqlQuery.value(1).toString();
+
+            if (preCtime == 0){
+                preCtime = currentCtime;
+            }
+
+            //判断
+            if ((preCtime - currentCtime) < 3600){
+                if (dateList.indexOf(currentDate) < 0){
+                    dateList << currentDate;
+                }
+            }
+        }
+    }
+
+    return dateList.length();
+}
+
 //创建用户记录表
 bool Wdb::createUserHistoryTable(){
     QSqlQuery sqlQuery;

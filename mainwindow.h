@@ -24,6 +24,7 @@
 #include <QTextCharFormat>
 #include <QWidget>
 #include "wdb.h"
+#include "wuserrecord.h"
 
 namespace Ui {
 class MainWindow;
@@ -48,6 +49,11 @@ public slots:
     void startSend(); //开始发送
     void yiedText(); //迭代请求
     void repeatSend(); //重新发送
+    void preText(); //上一段
+    void nextText(); //下一段
+    void currentText(); //当前段
+
+    void showUserRecord(); //显示用户的记录信息
     void showDi();//显示五笔拆解
     void timeUpdate(); //每一秒更新
     void setLineColor();//设置字体颜色

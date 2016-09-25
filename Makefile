@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_NO_DEBUG -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.8 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -O2 -std=gnu++11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.8 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib
+INCPATH       = -I. -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib
 QMAKE         = /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -36,7 +36,7 @@ DISTNAME      = wubigendaqi1.0.0
 DISTDIR = /Users/yangze/Documents/work/git/qt/wubigendaqi/.tmp/wubigendaqi1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.8 -Wl,-rpath,/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtSql -framework OpenGL -framework AGL 
+LIBS          = $(SUBLIBS) -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib -framework QtPrintSupport -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtSql -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -56,14 +56,18 @@ SOURCES       = main.cpp \
 		wfilterstatement.cpp \
 		wfilterword.cpp \
 		wfiltercentence.cpp \
-		wdb.cpp qrc_source.cpp \
+		wdb.cpp \
+		qcustomplot.cpp \
+		wuserrecord.cpp qrc_source.cpp \
 		moc_mainwindow.cpp \
 		moc_wfileinfo.cpp \
 		moc_wfileterform.cpp \
 		moc_wfilterstatement.cpp \
 		moc_wfilterword.cpp \
 		moc_wfiltercentence.cpp \
-		moc_wdb.cpp
+		moc_wdb.cpp \
+		moc_qcustomplot.cpp \
+		moc_wuserrecord.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		wfileinfo.o \
@@ -73,6 +77,8 @@ OBJECTS       = main.o \
 		wfilterword.o \
 		wfiltercentence.o \
 		wdb.o \
+		qcustomplot.o \
+		wuserrecord.o \
 		qrc_source.o \
 		moc_mainwindow.o \
 		moc_wfileinfo.o \
@@ -80,7 +86,9 @@ OBJECTS       = main.o \
 		moc_wfilterstatement.o \
 		moc_wfilterword.o \
 		moc_wfiltercentence.o \
-		moc_wdb.o
+		moc_wdb.o \
+		moc_qcustomplot.o \
+		moc_wuserrecord.o
 DIST          = img/file.png \
 		img/icon.ico \
 		data/db_user_record.txt \
@@ -245,7 +253,9 @@ DIST          = img/file.png \
 		wfilterstatement.h \
 		wfilterword.h \
 		wfiltercentence.h \
-		wdb.h main.cpp \
+		wdb.h \
+		qcustomplot.h \
+		wuserrecord.h main.cpp \
 		mainwindow.cpp \
 		wfileinfo.cpp \
 		wfileterform.cpp \
@@ -253,7 +263,9 @@ DIST          = img/file.png \
 		wfilterstatement.cpp \
 		wfilterword.cpp \
 		wfiltercentence.cpp \
-		wdb.cpp
+		wdb.cpp \
+		qcustomplot.cpp \
+		wuserrecord.cpp
 QMAKE_TARGET  = wubigendaqi
 DESTDIR       = 
 TARGET        = wubigendaqi.app/Contents/MacOS/wubigendaqi
@@ -262,7 +274,7 @@ TARGET        = wubigendaqi.app/Contents/MacOS/wubigendaqi
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_wfileterform.h ui_wfilterstatement.h ui_wfilterword.h ui_wfiltercentence.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_wfileterform.h ui_wfilterstatement.h ui_wfilterword.h ui_wfiltercentence.h ui_wuserrecord.h $(OBJECTS)  
 	@test -d wubigendaqi.app/Contents/MacOS/ || mkdir -p wubigendaqi.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -422,6 +434,7 @@ Makefile: wubigendaqi.pro /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/ma
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/features/lex.prf \
 		wubigendaqi.pro \
 		source.qrc \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/QtPrintSupport.prl \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/QtGui.prl \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/QtSql.prl \
@@ -583,6 +596,7 @@ Makefile: wubigendaqi.pro /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/ma
 /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/features/lex.prf:
 wubigendaqi.pro:
 source.qrc:
+/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/QtPrintSupport.prl:
 /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
 /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/QtGui.prl:
 /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/QtSql.prl:
@@ -617,9 +631,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents source.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h wfileinfo.h wfileterform.h wfilepipi.h wfilterstatement.h wfilterword.h wfiltercentence.h wdb.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp wfileinfo.cpp wfileterform.cpp wfilepipi.cpp wfilterstatement.cpp wfilterword.cpp wfiltercentence.cpp wdb.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.ui wfileterform.ui wfilterstatement.ui wfilterword.ui wfiltercentence.ui $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h wfileinfo.h wfileterform.h wfilepipi.h wfilterstatement.h wfilterword.h wfiltercentence.h wdb.h qcustomplot.h wuserrecord.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp wfileinfo.cpp wfileterform.cpp wfilepipi.cpp wfilterstatement.cpp wfilterword.cpp wfiltercentence.cpp wdb.cpp qcustomplot.cpp wuserrecord.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.ui wfileterform.ui wfilterstatement.ui wfilterword.ui wfiltercentence.ui wuserrecord.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -650,15 +664,16 @@ qrc_source.cpp: source.qrc \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/rcc \
 		data/db_user_record.txt \
 		data/di.txt \
+		style/style_default.qss \
 		img/file.png \
 		img/bg.jpg \
 		img/icon.icns \
 		img/icon.ico
 	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/rcc -name source source.qrc -o qrc_source.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_wfileinfo.cpp moc_wfileterform.cpp moc_wfilterstatement.cpp moc_wfilterword.cpp moc_wfiltercentence.cpp moc_wdb.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_wfileinfo.cpp moc_wfileterform.cpp moc_wfilterstatement.cpp moc_wfilterword.cpp moc_wfiltercentence.cpp moc_wdb.cpp moc_qcustomplot.cpp moc_wuserrecord.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_wfileinfo.cpp moc_wfileterform.cpp moc_wfilterstatement.cpp moc_wfilterword.cpp moc_wfiltercentence.cpp moc_wdb.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_wfileinfo.cpp moc_wfileterform.cpp moc_wfilterstatement.cpp moc_wfilterword.cpp moc_wfiltercentence.cpp moc_wdb.cpp moc_qcustomplot.cpp moc_wuserrecord.cpp
 moc_mainwindow.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
@@ -732,9 +747,18 @@ moc_mainwindow.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.fr
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QList \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qlist.h \
+		wuserrecord.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QVector \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QSharedPointer \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers/QFont \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers/qfont.h \
 		mainwindow.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc
-	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
+	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
 
 moc_wfileinfo.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -754,7 +778,7 @@ moc_wfileinfo.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.fra
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		wfileinfo.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc
-	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wfileinfo.h -o moc_wfileinfo.cpp
+	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wfileinfo.h -o moc_wfileinfo.cpp
 
 moc_wfileterform.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -803,7 +827,7 @@ moc_wfileterform.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.
 		wfiltercentence.h \
 		wfileterform.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc
-	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wfileterform.h -o moc_wfileterform.cpp
+	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wfileterform.h -o moc_wfileterform.cpp
 
 moc_wfilterstatement.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -848,7 +872,7 @@ moc_wfilterstatement.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidg
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QMapIterator \
 		wfilterstatement.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc
-	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wfilterstatement.h -o moc_wfilterstatement.cpp
+	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wfilterstatement.h -o moc_wfilterstatement.cpp
 
 moc_wfilterword.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -892,7 +916,7 @@ moc_wfilterword.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.f
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QMapIterator \
 		wfilterword.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc
-	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wfilterword.h -o moc_wfilterword.cpp
+	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wfilterword.h -o moc_wfilterword.cpp
 
 moc_wfiltercentence.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -936,7 +960,7 @@ moc_wfiltercentence.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidge
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QMapIterator \
 		wfiltercentence.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc
-	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wfiltercentence.h -o moc_wfiltercentence.cpp
+	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wfiltercentence.h -o moc_wfiltercentence.cpp
 
 moc_wdb.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qobject.h \
@@ -960,15 +984,65 @@ moc_wdb.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/He
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QDateTime \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QMapIterator \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QList \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qlist.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		wdb.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc
-	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wdb.h -o moc_wdb.cpp
+	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wdb.h -o moc_wdb.cpp
+
+moc_qcustomplot.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qmath.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QtNumeric \
+		qcustomplot.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc
+	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib qcustomplot.h -o moc_qcustomplot.cpp
+
+moc_wuserrecord.cpp: /Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QVector \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		wdb.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/QSqlDatabase \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QTextStream \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QIODevice \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qiodevice.h \
+		wfilepipi.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QStringList \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QMapIterator \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QList \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qlist.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QSharedPointer \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers/QFont \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers/qfont.h \
+		wuserrecord.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc
+	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/mkspecs/macx-clang -I/Users/yangze/Documents/work/git/qt/wubigendaqi -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers -I/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/usr/local/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/usr/include -I'/System/Library/Frameworks (framework directory)' -I'/Library/Frameworks (framework directory)' -F/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib wuserrecord.h -o moc_wuserrecord.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_wfileterform.h ui_wfilterstatement.h ui_wfilterword.h ui_wfiltercentence.h
+compiler_uic_make_all: ui_mainwindow.h ui_wfileterform.h ui_wfilterstatement.h ui_wfilterword.h ui_wfiltercentence.h ui_wuserrecord.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_wfileterform.h ui_wfilterstatement.h ui_wfilterword.h ui_wfiltercentence.h
+	-$(DEL_FILE) ui_mainwindow.h ui_wfileterform.h ui_wfilterstatement.h ui_wfilterword.h ui_wfiltercentence.h ui_wuserrecord.h
 ui_mainwindow.h: mainwindow.ui \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/uic
 	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/uic mainwindow.ui -o ui_mainwindow.h
@@ -988,6 +1062,14 @@ ui_wfilterword.h: wfilterword.ui \
 ui_wfiltercentence.h: wfiltercentence.ui \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/uic
 	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/uic wfiltercentence.ui -o ui_wfiltercentence.h
+
+ui_wuserrecord.h: wuserrecord.ui \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/uic \
+		qcustomplot.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qmath.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QtNumeric
+	/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/bin/uic wuserrecord.ui -o ui_wuserrecord.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -1075,6 +1157,15 @@ main.o: main.cpp mainwindow.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QList \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qlist.h \
+		wuserrecord.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QVector \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QSharedPointer \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers/QFont \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers/qfont.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
@@ -1153,6 +1244,15 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QList \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qlist.h \
+		wuserrecord.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QVector \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QSharedPointer \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers/QFont \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers/qfont.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
@@ -1391,8 +1491,57 @@ wdb.o: wdb.cpp wdb.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QDateTime \
 		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QMapIterator
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QMapIterator \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QList \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qlist.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wdb.o wdb.cpp
+
+qcustomplot.o: qcustomplot.cpp qcustomplot.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qmath.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QtNumeric
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qcustomplot.o qcustomplot.cpp
+
+wuserrecord.o: wuserrecord.cpp wuserrecord.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QVector \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		wdb.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/QSqlDatabase \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/QSqlQuery \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QTextStream \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QIODevice \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qiodevice.h \
+		wfilepipi.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QStringList \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QMapIterator \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QList \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qlist.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/QSharedPointer \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers/QFont \
+		/Users/yangze/app/tool/Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers/qfont.h \
+		ui_wuserrecord.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wuserrecord.o wuserrecord.cpp
 
 qrc_source.o: qrc_source.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_source.o qrc_source.cpp
@@ -1417,6 +1566,12 @@ moc_wfiltercentence.o: moc_wfiltercentence.cpp
 
 moc_wdb.o: moc_wdb.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_wdb.o moc_wdb.cpp
+
+moc_qcustomplot.o: moc_qcustomplot.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qcustomplot.o moc_qcustomplot.cpp
+
+moc_wuserrecord.o: moc_wuserrecord.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_wuserrecord.o moc_wuserrecord.cpp
 
 ####### Install
 

@@ -116,7 +116,7 @@
      <item>
       <widget class="QLabel" name="label_14">
        <property name="text">
-        <string>开启限时：</string>
+        <string>练习模式：</string>
        </property>
       </widget>
      </item>
@@ -130,46 +130,6 @@
        </property>
        <property name="text">
         <string>开启</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="5" column="1">
-    <layout class="QHBoxLayout" name="horizontalLayout_11">
-     <item>
-      <widget class="QLabel" name="label_10">
-       <property name="text">
-        <string>每字时间：</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_time">
-       <property name="maxLength">
-        <number>4</number>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_11">
-       <property name="minimumSize">
-        <size>
-         <width>30</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>20</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>秒</string>
        </property>
       </widget>
      </item>
@@ -212,6 +172,9 @@
       <bool>true</bool>
      </property>
     </widget>
+   </item>
+   <item row="5" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout_11"/>
    </item>
   </layout>
  </widget>

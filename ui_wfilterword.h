@@ -49,21 +49,18 @@ public:
     QHBoxLayout *horizontalLayout_14;
     QLabel *label_14;
     QCheckBox *checkBox_dingshi;
-    QHBoxLayout *horizontalLayout_11;
-    QLabel *label_10;
-    QLineEdit *lineEdit_time;
-    QLabel *label_11;
     QHBoxLayout *horizontalLayout_15;
     QPushButton *pushButton_addFile;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButton_send;
     QPlainTextEdit *plainTextEdit;
+    QHBoxLayout *horizontalLayout_11;
 
     void setupUi(QWidget *WfilterWord)
     {
         if (WfilterWord->objectName().isEmpty())
             WfilterWord->setObjectName(QStringLiteral("WfilterWord"));
-        WfilterWord->resize(390, 300);
+        WfilterWord->resize(390, 336);
         gridLayout = new QGridLayout(WfilterWord);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         listWidget = new QListWidget(WfilterWord);
@@ -156,30 +153,6 @@ public:
 
         gridLayout->addLayout(horizontalLayout_14, 4, 1, 1, 1);
 
-        horizontalLayout_11 = new QHBoxLayout();
-        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
-        label_10 = new QLabel(WfilterWord);
-        label_10->setObjectName(QStringLiteral("label_10"));
-
-        horizontalLayout_11->addWidget(label_10);
-
-        lineEdit_time = new QLineEdit(WfilterWord);
-        lineEdit_time->setObjectName(QStringLiteral("lineEdit_time"));
-        lineEdit_time->setMaxLength(4);
-        lineEdit_time->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_11->addWidget(lineEdit_time);
-
-        label_11 = new QLabel(WfilterWord);
-        label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setMinimumSize(QSize(30, 0));
-        label_11->setMaximumSize(QSize(20, 16777215));
-
-        horizontalLayout_11->addWidget(label_11);
-
-
-        gridLayout->addLayout(horizontalLayout_11, 5, 1, 1, 1);
-
         horizontalLayout_15 = new QHBoxLayout();
         horizontalLayout_15->setObjectName(QStringLiteral("horizontalLayout_15"));
         pushButton_addFile = new QPushButton(WfilterWord);
@@ -205,6 +178,11 @@ public:
 
         gridLayout->addWidget(plainTextEdit, 7, 1, 1, 1);
 
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
+
+        gridLayout->addLayout(horizontalLayout_11, 5, 1, 1, 1);
+
 
         retranslateUi(WfilterWord);
 
@@ -219,14 +197,12 @@ public:
         label->setText(QApplication::translate("WfilterWord", "\345\210\206\345\211\262\347\254\246\345\217\267\357\274\232", 0));
         lineEdit_fenge->setPlaceholderText(QApplication::translate("WfilterWord", "\344\270\272\347\251\272\345\210\231\346\214\211\345\255\227\345\210\206\351\232\224", 0));
         label_13->setText(QApplication::translate("WfilterWord", "\346\230\276\347\244\272\345\255\227\346\225\260\357\274\232", 0));
-        lineEdit_wordnum->setText(QApplication::translate("WfilterWord", "30", 0));
+        lineEdit_wordnum->setText(QApplication::translate("WfilterWord", "28", 0));
         label_12->setText(QApplication::translate("WfilterWord", "\346\230\276\347\244\272\351\241\272\345\272\217\357\274\232", 0));
         radioButton_order_suiji->setText(QApplication::translate("WfilterWord", "\351\232\217\346\234\272", 0));
         radioButton_order_shunxu->setText(QApplication::translate("WfilterWord", "\351\241\272\345\272\217", 0));
-        label_14->setText(QApplication::translate("WfilterWord", "\345\274\200\345\220\257\351\231\220\346\227\266\357\274\232", 0));
+        label_14->setText(QApplication::translate("WfilterWord", "\347\273\203\344\271\240\346\250\241\345\274\217\357\274\232", 0));
         checkBox_dingshi->setText(QApplication::translate("WfilterWord", "\345\274\200\345\220\257", 0));
-        label_10->setText(QApplication::translate("WfilterWord", "\346\257\217\345\255\227\346\227\266\351\227\264\357\274\232", 0));
-        label_11->setText(QApplication::translate("WfilterWord", "\347\247\222", 0));
         pushButton_addFile->setText(QApplication::translate("WfilterWord", "\346\267\273\345\212\240\346\226\207\344\273\266", 0));
         pushButton_send->setText(QApplication::translate("WfilterWord", "\345\274\200\345\220\257\345\217\221\346\226\207", 0));
     } // retranslateUi

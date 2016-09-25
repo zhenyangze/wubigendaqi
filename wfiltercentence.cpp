@@ -14,24 +14,24 @@ WfilterCentence::WfilterCentence(QWidget *parent) :
     //输入限制
     //ui->lineEdit_linenum->setValidator(new QIntValidator(0, 100, this));
     ui->lineEdit_wordnum->setValidator(new QIntValidator(0, 1500, this));
-    ui->lineEdit_time->setValidator(new QDoubleValidator(0.01, 10.00, 2));
+    //ui->lineEdit_time->setValidator(new QDoubleValidator(0.01, 10.00, 2));
 
 
     //控件临时
     ui->pushButton_send->setEnabled(false);
-    ui->lineEdit_time->setEnabled(false);
+    //ui->lineEdit_time->setEnabled(false);
 
     //读取配置文件
     this->readIni();
 
     //slot
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(selectItemFIle(QListWidgetItem*)));
-    connect(ui->checkBox_dingshi, SIGNAL(clicked(bool)), this, SLOT(checkInputTime(bool)));
+    //connect(ui->checkBox_dingshi, SIGNAL(clicked(bool)), this, SLOT(checkInputTime(bool)));
     connect(ui->lineEdit_fenge, SIGNAL(textChanged(QString)), this, SLOT(saveIni()));
-    connect(ui->lineEdit_time, SIGNAL(textChanged(QString)), this, SLOT(saveIni()));
+    //connect(ui->lineEdit_time, SIGNAL(textChanged(QString)), this, SLOT(saveIni()));
     connect(ui->lineEdit_wordnum, SIGNAL(textChanged(QString)), this, SLOT(saveIni()));
     connect(ui->radioButton_order_shunxu, SIGNAL(toggled(bool)), this, SLOT(saveIni()));
-    connect(ui->checkBox_dingshi, SIGNAL(toggled(bool)), this, SLOT(saveIni()));
+    //connect(ui->checkBox_dingshi, SIGNAL(toggled(bool)), this, SLOT(saveIni()));
 
 }
 
@@ -128,6 +128,12 @@ void WfilterCentence::on_pushButton_send_clicked()
         }
     }
 
+    //是否是练习模式
+    if (true == ui->checkBox_dingshi->isChecked()){
+        WfilePipi::isPricatce = true;
+    } else {
+        WfilePipi::isPricatce = false;
+    }
 
     int wordNum = ui->lineEdit_wordnum->text().toInt();
     int wordCount = 0;
@@ -172,7 +178,7 @@ void WfilterCentence::on_pushButton_send_clicked()
     WfilePipi::contentCount = WfilePipi::contentList.join(" ").length();
 
     //totaltime
-    WfilePipi::totalTime = totalCount * (ui->lineEdit_time->text().toDouble());
+    //WfilePipi::totalTime = totalCount * (ui->lineEdit_time->text().toDouble());
 
     //emit
     emit noticeMainStart();
@@ -184,12 +190,6 @@ void WfilterCentence::on_pushButton_send_clicked()
 
 //选择不限时间的按钮时，禁止时间输入框
 void WfilterCentence::checkInputTime(bool isSelect){
-    if(isSelect == true) {
-        ui->lineEdit_time->setEnabled(true);
-    } else {
-        ui->lineEdit_time->setEnabled(false);
-    }
-    this->saveIni();
 }
 
 void WfilterCentence::readIni(){
@@ -219,7 +219,7 @@ void WfilterCentence::readIni(){
        >> isLimit;
 
     ui->lineEdit_fenge->setText(inputFenge);
-    ui->lineEdit_time->setText(inputTime);
+    //ui->lineEdit_time->setText(inputTime);
     ui->lineEdit_wordnum->setText(inputWordNum);
 
 
@@ -248,7 +248,7 @@ void WfilterCentence::saveIni(){
     out << this->fileList
         << ui->lineEdit_fenge->text()
         << ui->lineEdit_wordnum->text()
-        << ui->lineEdit_time->text()
+        << 0 //ui->lineEdit_time->text()
         << ui->radioButton_order_shunxu->isChecked()
         << ui->radioButton_order_suiji->isChecked()
         <<ui->checkBox_dingshi->isChecked();
