@@ -96,7 +96,7 @@ void WUserRecord::showUserSpeed(){
     if (maxy <= 0){
         maxy = 150;
     }
-    ui->widget->xAxis->setRange(minx - 3800, maxx + 3800);
+    ui->widget->xAxis->setRange(minx, maxx);
     ui->widget->yAxis->setRange(miny, maxy);
 
 }
