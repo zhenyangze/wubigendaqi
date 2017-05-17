@@ -499,7 +499,7 @@ void MainWindow::countUserKeyDownPerWord(){
 
 void MainWindow::saveUserData(){
     //练习模式不保存数据
-    if(WfilePipi::index > 0 && false == WfilePipi::isPricatce){
+    if(WfilePipi::index > 0 && false == WfilePipi::isPricatce && false == WfilePipi::isEnd){
         this->db->saveResult();
     }
 }
