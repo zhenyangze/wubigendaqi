@@ -254,7 +254,13 @@ void MainWindow::showDi(){
 //读取五笔字典
 void MainWindow::readDi(QString filePath){
     if (filePath.length() == 0){
-        filePath = ":/source/data/di.txt";
+        QString diPath = QCoreApplication::applicationDirPath() + "/data/di.txt";
+        QFileInfo *fi = new QFileInfo(diPath);
+        if (fi->isFile()) {
+            filePath = diPath;
+        } else {
+            filePath = ":/source/data/di.txt";
+        }
     }
     WFileInfo *fileInfo = new WFileInfo;
     QString contents = fileInfo->getFileContents(filePath);
