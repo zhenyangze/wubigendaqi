@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/file.png</file>
+        <file>data/dict.txt</file>
+        <file>img/bg.jpg</file>
+        <file>img/icon.ico</file>
+        <file>data/db_user_record.txt</file>
+        <file>img/icon.icns</file>
+        <file>style/style_default.qss</file>
+    </qresource>
+</RCC>
